@@ -21,7 +21,4 @@ public class UserDaoImpl implements UserDao{
         this.entityManager = entityManager;
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 }
