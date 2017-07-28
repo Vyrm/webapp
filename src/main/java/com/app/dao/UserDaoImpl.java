@@ -16,9 +16,4 @@ public class UserDaoImpl implements UserDao{
     public void create(String login, String password) {
         entityManager.persist(new User(login,password));
     }
-
-    public UserDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
 }

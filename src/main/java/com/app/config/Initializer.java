@@ -10,12 +10,12 @@ import javax.persistence.PersistenceContext;
 
 @Configuration
 public class Initializer {
-    @PersistenceContext
+/*    @PersistenceContext
     private EntityManager entityManager;
 
     @Bean(name = "userDao")
     public UserDao userDao(){
         return new UserDaoImpl(entityManager);
-    }
+    }*/
 
 }
