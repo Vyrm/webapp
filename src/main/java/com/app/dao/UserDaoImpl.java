@@ -2,10 +2,10 @@ package com.app.dao;
 
 import com.app.model.User;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -14,6 +14,7 @@ public class UserDaoImpl implements UserDao{
 
     @Transactional
     public void create(String login, String password) {
-        entityManager.persist(new User(login,password));
+        User user = new User(login, password);
+        entityManager.persist(user);
     }
 }
