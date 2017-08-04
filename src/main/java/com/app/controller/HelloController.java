@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping ("/")
+@RequestMapping("/")
 public class HelloController {
 
-    @RequestMapping (method = RequestMethod.GET)
-    public String printWelcome(ModelMap modelMap){
+    @RequestMapping(method = RequestMethod.GET)
+    public String printWelcome(ModelMap modelMap) {
         modelMap.addAttribute("message", "Welcome to Reiltor-helper");
         return "index";
     }

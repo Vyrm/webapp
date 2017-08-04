@@ -2,6 +2,7 @@ package com.app.dao;
 
 import com.app.model.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -25,7 +26,7 @@ public class UserDaoImpl implements UserDao {
         TypedQuery<User> typedQuery = (TypedQuery<User>) entityManager.createQuery("SELECT u FROM User u WHERE u.login =:login", User.class)
                 .setParameter("login", login);
         List<User> list = typedQuery.getResultList();
-        if(list == null || list.isEmpty()){
+        if (list == null || list.isEmpty()) {
             return null;
         }
         return list.get(0);

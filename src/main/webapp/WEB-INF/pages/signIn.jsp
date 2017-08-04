@@ -24,7 +24,7 @@
         </p>
         <input type="submit">
     </form>
-    <a href = "/">Back</a>
+    <a href="/">Back</a>
 </div>
 </body>
 </html>
