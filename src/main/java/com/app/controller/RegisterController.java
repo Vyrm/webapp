@@ -1,7 +1,6 @@
 package com.app.controller;
 
 import com.app.dao.UserDao;
-import com.app.dao.UserDaoImpl;
 import com.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/signUp")
+@RequestMapping(value = "/signup")
 public class RegisterController {
 
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getForm() {
-        return new ModelAndView("signUp");
+        return new ModelAndView("signup");
     }
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)

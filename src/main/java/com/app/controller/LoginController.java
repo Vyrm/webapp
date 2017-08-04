@@ -1,7 +1,6 @@
 package com.app.controller;
 
 import com.app.dao.UserDao;
-import com.app.dao.UserDaoImpl;
 import com.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +18,11 @@ import java.io.IOException;
 public class LoginController {
 
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public ModelAndView getForm() {
-        return new ModelAndView("signIn");
+        return new ModelAndView("signin");
     }
 
     @RequestMapping(value = "/signInUser", method = RequestMethod.POST)
@@ -31,7 +30,7 @@ public class LoginController {
                                @ModelAttribute("user") User user) {
         User user1 = userDao.find(user.getLogin());
         if (user1 == null || !user.getPassword().equals(user1.getPassword())) {
-            return new ModelAndView("signIn");
+            return new ModelAndView("signin");
         } else {
             HttpSession session = httpServletRequest.getSession(true);
             session.setAttribute("inSystem", true);
