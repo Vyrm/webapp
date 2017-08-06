@@ -25,7 +25,7 @@ public class LoginController {
         return new ModelAndView("signin");
     }
 
-    @RequestMapping(value = "/signInUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/signinuser", method = RequestMethod.POST)
     public ModelAndView signIn(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                @ModelAttribute("user") User user) {
         User user1 = userDao.find(user.getLogin());

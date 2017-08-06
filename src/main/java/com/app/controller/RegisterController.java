@@ -9,21 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Controller
-@RequestMapping(value = "/signup")
+@RequestMapping
 public class RegisterController {
 
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView getForm() {
         return new ModelAndView("signup");
     }
 
-    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-    public ModelAndView signUp(@ModelAttribute("user") User user) {
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public void signUp(@ModelAttribute("user") User user, HttpServletResponse httpServletResponse) {
         userDao.create(user.getLogin(), user.getPassword());
-        return new ModelAndView("/index");
+        try {
+            httpServletResponse.sendRedirect("/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

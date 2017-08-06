@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import com.app.model.Apartment;
 import com.app.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +17,7 @@ public class UserDaoImpl implements UserDao {
 
     @Transactional
     public void create(String login, String password) {
-        User user = new User(login, password);
-        entityManager.persist(user);
+        entityManager.persist(new User(login, password));
     }
 
     @Transactional
@@ -29,5 +29,10 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
         return list.get(0);
+    }
+
+    @Transactional
+    public void addApartmentToUser(User user, Apartment apartment) {
+        entityManager.persist(user.getApartmentsList().add(apartment));
     }
 }
