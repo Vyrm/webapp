@@ -5,6 +5,8 @@ import com.app.model.User;
 
 public interface UserDao {
     void create(String login, String password);
+
     User find(String login);
-    void addApartmentToUser(User user, Apartment apartment);
+
+    void update(User user, Apartment apartment);
 }

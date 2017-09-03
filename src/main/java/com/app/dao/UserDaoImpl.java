@@ -32,7 +32,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Transactional
-    public void addApartmentToUser(User user, Apartment apartment) {
-        entityManager.persist(user.getApartmentsList().add(apartment));
+    public void update(User user, Apartment apartment) {
+        List<Apartment> list = user.getApartmentsList();
+        list.add(apartment);
+        entityManager.createQuery("UPDATE User u SET u.apartmentsList =:apartmentList")
+                .setParameter("apartmentList", list);
     }
 }

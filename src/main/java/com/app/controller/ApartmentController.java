@@ -23,23 +23,34 @@ public class ApartmentController {
     private ApartmentDao apartmentDao;
 
     @RequestMapping("/addapartment")
-    public ModelAndView getForm(){
+    public ModelAndView getForm() {
         return new ModelAndView("addapartment");
     }
 
     @RequestMapping("/addnewapartment")
-    public void addApartment (@ModelAttribute("apartment") Apartment apartment, HttpServletRequest httpServletRequest,
-                              HttpServletResponse httpServletResponse){
+    public void addApartment(@ModelAttribute("apartment") Apartment apartment, HttpServletRequest httpServletRequest,
+                             HttpServletResponse httpServletResponse) {
         HttpSession httpSession = httpServletRequest.getSession();
         String currentUser = (String) httpSession.getAttribute("currentUserName");
         User user = userDao.find(currentUser);
-        apartmentDao.create(user, apartment.getCity(), apartment.getStreet(),
+        Apartment apartment1 = new Apartment(user, apartment.getCity(), apartment.getStreet(),
                 apartment.getRoomCount(), apartment.getPrice());
+        apartmentDao.create(apartment1);
+        userDao.update(user, apartment);
 
         try {
             httpServletResponse.sendRedirect("/");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/showapartments")
+    public String showApartments(HttpServletRequest httpServletRequest) {
+        HttpSession httpSession = httpServletRequest.getSession();
+        String currentUser = (String) httpSession.getAttribute("currentUserName");
+        User user = userDao.find(currentUser);
+        httpServletRequest.setAttribute("list", user.getApartmentsList());
+        return "showaddedapartments";
     }
 }

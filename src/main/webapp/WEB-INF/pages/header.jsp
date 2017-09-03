@@ -1,4 +1,4 @@
-<%@include file="include.jsp"%>
+<%@include file="include.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
     <title>Rieltor-helper</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Rieltor-Helper</a>
@@ -29,6 +29,7 @@
             <li class="active"><a href="/">Home</a></li>
             <c:if test="${inSystem}">
                 <li><a href="/addapartment">Add apartment</a></li>
+                <li><a href="/showapartments">Show apartments</a></li>
             </c:if>
 
 

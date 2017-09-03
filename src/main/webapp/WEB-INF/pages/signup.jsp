@@ -1,14 +1,16 @@
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <div class="container">
     <form action="/registeruser" method="post">
-        <p>Login
-            <input type="text" name="login">
-        </p>
-        <p>Password
-            <input type="password" name="password">
-        </p>
-        <input type="submit">
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" id="login" name="login">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <a href="/">Back</a>
 </div>
-<%@include file="footer.jsp"%>
+<%@include file="footer.jsp" %>

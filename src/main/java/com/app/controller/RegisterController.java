@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -27,6 +29,18 @@ public class RegisterController {
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public void signUp(@ModelAttribute("user") User user, HttpServletResponse httpServletResponse) {
         userDao.create(user.getLogin(), user.getPassword());
+        try {
+            httpServletResponse.sendRedirect("/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/logout")
+    public void logOut(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        HttpSession session = httpServletRequest.getSession(false);
+        session.setAttribute("inSystem", false);
+        session.setAttribute("currentUserName", null);
         try {
             httpServletResponse.sendRedirect("/");
         } catch (IOException e) {

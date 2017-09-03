@@ -1,6 +1,11 @@
-p {
+.nav navbar-nav navbar-right p {
     display: block;
     font-size: 20px;
     padding-top: 10px;
     color: #9d9d9d;
+    padding-left: 15px;
+}
+
+.addapart {
+    width: 90%
 }
